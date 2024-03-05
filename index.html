@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <script>
+        // Simple database for storing user credentials
+        const users = [
+            { username: "user1", password: "password1" },
+            { username: "user2", password: "password2" },
+            // Add more users as needed
+        ];
+
+        // Function to check if the entered credentials are valid
+        function authenticateUser(username, password) {
+            return users.some(user => user.username === username && user.password === password);
+        }
+
+        // Event listener for form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the entered username and password
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Check if the entered credentials are valid
+            if (authenticateUser(username, password)) {
+                // Redirect the user to the form.html page upon successful login
+                window.location.href = "form.html";
+            } else {
+                // Display an error message if the credentials are invalid
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
